@@ -52,13 +52,14 @@ Now you can follow the [Nano Agent Interaction section below](#nano-agent-intera
 
 ## Nano Agent Interaction
 
-There are two ways to interact with the nano agent.
-1. Through the CLI (`uv run nano-cli run`)
+There are three ways to interact with the nano agent.
+1. Nano Agent **Through the CLI** (`uv run nano-cli run`)
    - Great for understanding agent capabilities
-2. Through Claude Code or any MCP client (`.mcp.json` or equivalent configuration)
+2. Nano Agent **Through Claude Code** or any MCP client (`.mcp.json` or equivalent configuration)
    - Great for delegating work and scaling up compute in the field
+3. Nano Agent **Through the Higher Order Prompt** (HOP) and Lower Order Prompt (LOP) pattern to test and compare models across providers and models.
 
-### Quick Testing Commands through the CLI
+### Through the CLI
 
 Remember, when running directly your current directory is where ever you run `uv run nano-cli run` from.
 
@@ -87,7 +88,9 @@ uv run nano-cli run "List files and count the total number of files and director
 uv run nano-cli run "Create and edit a test file" --verbose
 ```
 
-### Quick Testing Commands through Claude Code
+### Through Claude Code
+
+#### Call the MCP server directly
 
 ```prompt
 mcp nano-agent: prompt_nano_agent "Create a hello world script in python" --model gpt-5
@@ -96,7 +99,34 @@ mcp nano-agent: prompt_nano_agent "Read the first 10 lines and last 10 lines of 
 etc...
 ```
 
-You can now run any of the commands above through Claude Code.
+#### Call the MCP server through a sub-agent
+
+```prompt
+@agent-nano-agent-gpt-5-mini "Create a hello world script in python"
+
+@agent-nano-agent-gpt-5 "Summarize the <file name>"
+
+@agent-nano-agent-claude-opus-4-1 "<insert agentic prompt here>"
+
+@agent-nano-agent-gpt-oss-20b "<insert agentic prompt here>"
+
+@agent-nano-agent-gpt-oss-120b "<insert agentic prompt here>"
+
+@agent-nano-agent-claude-sonnet-4 "<insert agentic prompt here>"
+
+@agent-nano-agent-claude-3-haiku "<insert agentic prompt here>"
+```
+
+### Through the Higher Order Prompt (HOP) and Lower Order Prompt (LOP) pattern
+
+In Claude Code call
+
+```
+/perf:hop_evaluate_nano_agents .claude/commands/perf/lop_eval_1__dummy_test.md 
+
+/perf:hop_evaluate_nano_agents .claude/commands/perf/lop_eval_2__basic_read_test.md
+```
+
 
 ## Features
 
