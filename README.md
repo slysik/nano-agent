@@ -150,6 +150,23 @@ In Claude Code call
 /perf:hop_evaluate_nano_agents .claude/commands/perf/lop_eval_5__complex_engineering_test.md
 ```
 
+#### Understanding HOP/LOP: How It Works
+
+The **HOP/LOP pattern** enables systematic parallel evaluation of multiple models:
+
+- **HOP (Higher Order Prompt)**: The orchestrator that reads test files, delegates to agents in parallel, and grades results
+- **LOP (Lower Order Prompt)**: Individual test definitions with prompts, expected outputs, and grading rubrics
+- **Execution Flow**: HOP → reads LOP → calls 9 agents simultaneously → collects results → generates comparison tables
+
+**Example**: When you run `/perf:hop_evaluate_nano_agents lop_eval_3__file_operations_test.md`:
+1. HOP reads the test specification from the LOP file
+2. Extracts the prompt and list of agents to test
+3. Executes all agents in parallel (GPT-5, Claude, Local models)
+4. Each agent runs in isolation via the nano-agent MCP server
+5. Results are graded on Performance, Speed, and Cost
+6. Output shows ranked comparison with surprising results (e.g., Claude-3-haiku often beats expensive models)
+
+This architecture ensures fair comparison by using the same OpenAI Agent SDK for all providers, creating a true apples-to-apples benchmark.
 
 ## Features
 
