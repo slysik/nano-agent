@@ -1,11 +1,19 @@
 # Nano Agent
 > Watched how we used GPT-5 and Claude Code with nano-agents [here](https://youtu.be/tcZ3W8QYirQ).
 
-**What?** A MCP Server for a small scale engineering agents with multi-provider LLM support.
+**What?** A MCP Server for experimental, small scale engineering agents with multi-provider LLM support.
 
-**Why?** To test and compare **Agentic** Capabilities of LLMs across Performance, Speed, and Cost.
+**Why?** To test and compare **Agentic** Capabilities of Cloud and Local LLMs across Performance, Speed, and Cost.
 
 <img src="images/nano-agent.png" alt="Nano Agent" style="max-width: 800px;">
+
+### 🎬 See It In Action
+
+**Multi-Model Evaluation Flow** - Watch how HOP/LOP orchestrates parallel model testing:
+<img src="images/multi-model-eval-flow.gif" alt="Multi-Model Evaluation Flow" style="max-width: 800px;">
+
+**Model Comparison: GPT-5 vs Local Models** - Compare cloud and local model performance:
+<img src="images/model-comparison-gpt5-oss.gif" alt="Model Comparison GPT-5 vs OSS" style="max-width: 800px;">
 
 ## Installation
 
