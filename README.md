@@ -5,15 +5,24 @@
 
 **Why?** To test and compare **Agentic** Capabilities of Cloud and Local LLMs across Performance, Speed, and Cost.
 
+> "It's not about a single prompt call anymore. It's about how well your agent chains together multiple tools to accomplish real engineering results on your behalf." - From our evaluation
+
 <img src="images/nano-agent.png" alt="Nano Agent" style="max-width: 800px;">
 
 ### 🎬 See It In Action
 
-**Multi-Model Evaluation Flow** - Watch how HOP/LOP orchestrates parallel model testing:
+**Multi-Model Evaluation Flow** - Watch 9 models (GPT-5, Claude Opus, Local GPT-OSS) running in parallel on the same M4 Max:
 <img src="images/multi-model-eval-flow.gif" alt="Multi-Model Evaluation Flow" style="max-width: 800px;">
 
-**Model Comparison: GPT-5 vs Local Models** - Compare cloud and local model performance:
+**Model Comparison: GPT-5 vs Local Models** - Surprising results: GPT-OSS 20B/120B running on-device with $0.00 cost:
 <img src="images/model-comparison-gpt5-oss.gif" alt="Model Comparison GPT-5 vs OSS" style="max-width: 800px;">
+
+### 🔥 Key Findings from Our Testing
+
+- **Surprising Winners**: GPT-5 Nano/Mini often outperform larger models when factoring in speed and cost
+- **Local Revolution**: GPT-OSS 20B/120B models complete real agentic coding tasks on M4 Max (128GB RAM)
+- **Cost Reality Check**: Claude Opus 4.1 is extraordinarily expensive - performance isn't everything
+- **The Trade-off Triangle**: Performance vs Speed vs Cost - you don't always need the most expensive model
 
 ## Installation
 
@@ -408,6 +417,8 @@ uv run nano-cli run "List files" --model gpt-oss:20b --provider ollama
 ## Multi-Model Evaluation System
 
 The nano-agent includes a sophisticated multi-layer evaluation system for comparing LLM performance across different providers and models. This creates a level playing field for benchmarking by using the same execution environment (OpenAI Agent SDK) regardless of the underlying provider.
+
+> "Don't trust any individual benchmark. You need to crack open the hood of all these models and say, where is the true value?" - Engineering is all about trade-offs.
 
 ### 🎯 The Bread and Butter: HOP/LOP Pattern
 
