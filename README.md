@@ -2,6 +2,7 @@
 > Watched how we used GPT-5 and Claude Code with nano-agents [here](https://youtu.be/tcZ3W8QYirQ).
 
 **What?** A MCP Server for a small scale engineering agents with multi-provider LLM support.
+
 **Why?** To test and compare **Agentic** Capabilities of LLMs across Performance, Speed, and Cost.
 
 <img src="images/nano-agent.png" alt="Nano Agent" style="max-width: 800px;">
@@ -13,6 +14,7 @@
 - Install [Astral UV](https://docs.astral.sh/uv/getting-started/installation/)
 - Setup [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview)
 - Setup [Ollama](https://ollama.com/)
+- Get your OpenAI API key and Anthropic API key
 - Setup dotenv
   - `cp ./.env.sample ./.env` and fill out variables
   - `cp ./apps/nano_agent_mcp_server/.env.sample ./apps/nano_agent_mcp_server/.env` and fill out variables
@@ -23,13 +25,24 @@
   - `./scripts/install.sh`
   - `uv tool install -e .`
 - cp `.mcp.json.sample` to `.mcp.json` to use `nano-agent`
-
+- You should end up with a `.mcp.json` file that looks like this:
 ```json
 {
   "mcpServers": {
     "nano-agent": {
       "command": "nano-agent",
       "args": []
+    }
+  }
+}
+```
+- You can also test without installing `nano-agent` globally by running it this directory with
+```json
+{
+  "mcpServers": {
+    "nano-agent": {
+      "command": "uv",
+      "args": ["--directory", "apps/nano_agent_mcp_server", "run", "nano-agent"]
     }
   }
 }
@@ -43,7 +56,7 @@ There are two ways to interact with the nano agent.
 1. Through the CLI (`uv run nano-cli run`)
    - Great for understanding agent capabilities
 2. Through Claude Code or any MCP client (`.mcp.json` or equivalent configuration)
-   - Great for delegating work and scaling up compute
+   - Great for delegating work and scaling up compute in the field
 
 ### Quick Testing Commands through the CLI
 
@@ -95,6 +108,7 @@ You can now run any of the commands above through Claude Code.
 - 🚀 **Easy Integration**: Works with Claude Desktop, or as a CLI
 
 ## Nano-Agent Tools
+> Feel free to add/remove/improve tools as you see fit.
 
 Nano-Agent tools are stored in `nano_agent_tools.py`.
 
