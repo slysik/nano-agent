@@ -122,9 +122,15 @@ etc...
 In Claude Code call
 
 ```
-/perf:hop_evaluate_nano_agents .claude/commands/perf/lop_eval_1__dummy_test.md 
+/perf:hop_evaluate_nano_agents .claude/commands/perf/lop_eval_1__dummy_test.md
 
 /perf:hop_evaluate_nano_agents .claude/commands/perf/lop_eval_2__basic_read_test.md
+
+/perf:hop_evaluate_nano_agents .claude/commands/perf/lop_eval_3__file_operations_test.md
+
+/perf:hop_evaluate_nano_agents .claude/commands/perf/lop_eval_4__code_analysis_test.md
+
+/perf:hop_evaluate_nano_agents .claude/commands/perf/lop_eval_5__complex_engineering_test.md
 ```
 
 
