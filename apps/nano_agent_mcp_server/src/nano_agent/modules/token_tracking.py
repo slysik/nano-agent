@@ -96,7 +96,16 @@ MODEL_PRICING: Dict[str, Dict[str, Dict[str, float]]] = {
             "cache_write_1h_per_million_cost": 30.00,  # 1 hour cache writes
             "reasoning_token_per_million_cost": 0.00,
         },
-        "claude-opus-4-20250514": {
+# Claude models (August 2025 pricing)
+"claude-3-5-sonnet-20241022": {
+    "input_token_per_million_cost": 3.00,
+    "output_token_per_million_cost": 15.00,
+    "cached_input_token_per_million_cost": 0.30,  # Cache hits & refreshes (10% of base)
+    "cache_write_5m_per_million_cost": 3.75,  # 5 min cache writes (1.25x base)
+    "cache_write_1h_per_million_cost": 6.00,  # 1 hour cache writes (2x base)
+    "reasoning_token_per_million_cost": 0.00,  # Claude 3.5 doesn't have reasoning tokens
+},        
+"claude-opus-4-20250514": {
             "input_token_per_million_cost": 15.00,
             "output_token_per_million_cost": 75.00,
             "cached_input_token_per_million_cost": 1.50,

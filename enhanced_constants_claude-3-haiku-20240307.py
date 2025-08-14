@@ -2,7 +2,7 @@
 Central constants and configuration for the Nano Agent.
 
 This module contains all shared constants, default values, and configuration
-used across the nano agent codebase.
+used across the nano agent codebase, including an additional constant.
 """
 
 # Default Model Configuration
@@ -16,7 +16,6 @@ AVAILABLE_MODELS = {
         "claude-opus-4-1-20250805",
         "claude-opus-4-20250514",
         "claude-sonnet-4-20250514",
-"claude-3-5-sonnet-20241022",
         "claude-3-5-sonnet-20241022",
         "claude-3-haiku-20240307",
     ],
@@ -32,7 +31,7 @@ MODEL_INFO = {
     "claude-opus-4-1-20250805": "Claude Opus 4.1 - Latest Anthropic flagship",
     "claude-opus-4-20250514": "Claude Opus 4 - Powerful reasoning",
     "claude-sonnet-4-20250514": "Claude Sonnet 4 - Balanced performance",
-    "claude-3-5-sonnet-20241022": "Claude Sonnet 3.5 - Retro",    
+    "claude-3-5-sonnet-20241022": "Claude Sonnet 3.5 - Retro",
     "claude-3-haiku-20240307": "Claude 3 Haiku - Fast and efficient",
     "gpt-oss:20b": "GPT-OSS 20B - Local open-source model",
     "gpt-oss:120b": "GPT-OSS 120B - Large local model",
@@ -114,3 +113,6 @@ SUCCESS_AGENT_COMPLETE = "Agent completed successfully in {:.2f}s"
 
 # Version Info
 VERSION = "1.0.0"
+
+# New constant added by claude-3-haiku-20240307
+MODEL_SIGNATURE = "Enhanced by claude-3-haiku-20240307"

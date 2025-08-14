@@ -18,6 +18,7 @@ IMPORTANT: You're calling the respective claude code sub agents - do not call th
 @agent-nano-agent-claude-opus-4-1 PROMPT
 @agent-nano-agent-claude-opus-4 PROMPT
 @agent-nano-agent-claude-sonnet-4 PROMPT
+@agent-nano-agent-claude-sonnet-3-5 PROMPT
 @agent-nano-agent-claude-3-haiku PROMPT
 @agent-nano-agent-gpt-oss-20b PROMPT
 @agent-nano-agent-gpt-oss-120b PROMPT

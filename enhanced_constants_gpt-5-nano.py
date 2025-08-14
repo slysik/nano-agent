@@ -114,3 +114,6 @@ SUCCESS_AGENT_COMPLETE = "Agent completed successfully in {:.2f}s"
 
 # Version Info
 VERSION = "1.0.0"
+
+# Additional new constant
+MODEL_SIGNATURE = 'Enhanced by gpt-5-nano'

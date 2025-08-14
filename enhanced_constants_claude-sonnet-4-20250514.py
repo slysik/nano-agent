@@ -3,6 +3,8 @@ Central constants and configuration for the Nano Agent.
 
 This module contains all shared constants, default values, and configuration
 used across the nano agent codebase.
+
+Enhanced version with additional model signature constant.
 """
 
 # Default Model Configuration
@@ -114,3 +116,6 @@ SUCCESS_AGENT_COMPLETE = "Agent completed successfully in {:.2f}s"
 
 # Version Info
 VERSION = "1.0.0"
+
+# Enhancement Signature
+MODEL_SIGNATURE = "Enhanced by claude-sonnet-4-20250514"
