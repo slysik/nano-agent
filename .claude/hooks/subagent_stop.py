@@ -51,15 +51,15 @@ def get_tts_script_path():
     return None
 
 
-def announce_subagent_completion():
+def announce_subagent_completion(custom_message=None):
     """Announce subagent completion using the best available TTS service."""
     try:
         tts_script = get_tts_script_path()
         if not tts_script:
             return  # No TTS scripts available
         
-        # Use fixed message for subagent completion
-        completion_message = "Subagent Complete"
+        # Use custom message if provided, otherwise use default
+        completion_message = custom_message or "Subagent Complete Steve"
         
         # Call the TTS script with the completion message
         subprocess.run([
@@ -75,6 +75,54 @@ def announce_subagent_completion():
     except Exception:
         # Fail silently for any other errors
         pass
+
+
+def check_for_winner_announcement(input_data, log_dir):
+    """Check if this is a perf evaluation completion and announce winner if found."""
+    try:
+        # Check if the subagent name indicates a perf evaluation
+        subagent_name = input_data.get("subagent_name", "")
+        
+        # Look for evaluation results in the transcript
+        if "perf" in subagent_name.lower() or "eval" in subagent_name.lower():
+            transcript_path = input_data.get("transcript_path", "")
+            if os.path.exists(transcript_path):
+                # Read the transcript to find winner information
+                with open(transcript_path, 'r') as f:
+                    lines = f.readlines()
+                    
+                # Look for the final ranking section
+                found_ranking = False
+                for i, line in enumerate(lines):
+                    try:
+                        line_data = json.loads(line.strip())
+                        if line_data.get("type") == "text":
+                            content = line_data.get("text", "")
+                            
+                            # Check if we've found the Final Ranking section
+                            if "### Final Ranking" in content:
+                                found_ranking = True
+                            
+                            # If we're in the ranking section, look for 1st place
+                            if found_ranking and "**1st Place**:" in content:
+                                # Extract winner info from the line
+                                # Format: "1. **1st Place**: model_name (Overall Grade: X)"
+                                import re
+                                match = re.search(r'\*\*1st Place\*\*:\s*([^(]+)\s*\(Overall Grade:\s*([^)]+)\)', content)
+                                if match:
+                                    winner_model = match.group(1).strip()
+                                    winner_grade = match.group(2).strip()
+                                    
+                                    # Announce the winner
+                                    winner_message = f"First place winner: {winner_model}, Overall grade: {winner_grade}"
+                                    announce_subagent_completion(winner_message)
+                                    return True
+                    except (json.JSONDecodeError, KeyError):
+                        continue
+    except Exception:
+        pass  # Fail silently
+    
+    return False
 
 
 def main():
@@ -136,8 +184,13 @@ def main():
                 except Exception:
                     pass  # Fail silently
 
-        # Announce subagent completion via TTS only if --notify flag is set
+        # Check for winner announcement first
+        winner_announced = False
         if args.notify:
+            winner_announced = check_for_winner_announcement(input_data, log_dir)
+        
+        # Announce regular subagent completion if no winner was announced
+        if args.notify and not winner_announced:
             announce_subagent_completion()
 
         sys.exit(0)
